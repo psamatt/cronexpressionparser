@@ -1,0 +1,35 @@
+name: Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Setup JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 15
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Setup Gradle Cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle
+    - name: Assemble
+      run: ./gradlew clean assemble
+    - name: Test
+      run: ./gradlew test

@@ -1,0 +1,63 @@
+plugins {
+    id "java"
+    id "com.diffplug.spotless" version "5.10.1"
+}
+
+group "com.psamatt"
+project.version = "0.0.1"
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 15
+targetCompatibility = 15
+
+ext {
+    lombokVersion = "1.18.18"
+    junitVersion = "5.7.1"
+    mockitoVersion = "3.5.13"
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.assertj:assertj-core:3.19.0"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation 'com.github.stefanbirkner:system-lambda:1.2.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.psamatt.cronexpressionparser.Application'
+        )
+    }
+}
+
+spotless {
+    java {
+        importOrder()
+        removeUnusedImports()
+        indentWithSpaces(4)
+        googleJavaFormat("1.9").aosp()
+    }
+}
+
+build.dependsOn 'spotlessApply'
