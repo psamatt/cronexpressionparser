@@ -34,3 +34,10 @@ This has been built using the following tools
 - AssertJ
 - Lombok
 - Gradle
+
+### TODO Items
+- Add validation when day and month are invalid i.e 30 Feb
+- Add validation to ensure command is valid
+- Combine validation into single validator based on ranges
+- Add more writers, i.e to disk
+- Add help on CLI interface
