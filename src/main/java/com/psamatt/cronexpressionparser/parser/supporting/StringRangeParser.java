@@ -30,7 +30,7 @@ public class StringRangeParser implements Parser {
 
     private Collection<String> toRange(int minIndex, int maxIndex) {
         return IntStream.rangeClosed(minIndex, maxIndex)
-                .mapToObj(all::get)
+                .mapToObj(i -> String.valueOf(i + 1))
                 .collect(Collectors.toList());
     }
 }

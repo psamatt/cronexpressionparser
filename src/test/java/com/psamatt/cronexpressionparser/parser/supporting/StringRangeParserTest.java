@@ -20,6 +20,6 @@ class StringRangeParserTest {
     void shouldReturnRange() {
         Collection<String> actual = parser.parse("TUE-WED");
 
-        assertThat(actual).containsExactly("TUE", "WED");
+        assertThat(actual).containsExactly("2", "3");
     }
 }

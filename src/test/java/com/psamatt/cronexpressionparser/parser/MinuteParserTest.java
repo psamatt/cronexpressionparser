@@ -16,6 +16,13 @@ class MinuteParserTest {
     }
 
     @Test
+    void shouldParseComplicatedMinutes() {
+        Collection<String> values = parser.parse("1,4-8,*/15");
+
+        assertThat(values).containsExactly("1", "4", "5", "6", "7", "8", "0", "15", "30", "45");
+    }
+
+    @Test
     void shouldReturnOneValueOnSingle() {
         Collection<String> values = parser.parse("20");
 

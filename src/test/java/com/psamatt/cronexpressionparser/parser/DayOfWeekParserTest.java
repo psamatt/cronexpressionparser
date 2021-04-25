@@ -40,7 +40,7 @@ class DayOfWeekParserTest {
     void shouldReturnIncrementalOf15StartingAtZero() {
         Collection<String> values = parser.parse("*/2");
 
-        assertThat(values).containsExactly("0", "2", "4");
+        assertThat(values).containsExactly("0", "2", "4", "6");
     }
 
     @Test
@@ -54,7 +54,7 @@ class DayOfWeekParserTest {
     void shouldParseListOfDays() {
         Collection<String> values = parser.parse("MON-THU");
 
-        assertThat(values).containsExactly("MON", "TUE", "WED", "THU");
+        assertThat(values).containsExactly("1", "2", "3", "4");
     }
 
     @Test

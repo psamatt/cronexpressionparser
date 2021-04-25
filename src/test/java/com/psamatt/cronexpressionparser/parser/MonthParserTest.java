@@ -54,7 +54,7 @@ class MonthParserTest {
     void shouldParseListOfDays() {
         Collection<String> values = parser.parse("JAN-MAY");
 
-        assertThat(values).containsExactly("JAN", "FEB", "MAR", "APR", "MAY");
+        assertThat(values).containsExactly("1", "2", "3", "4", "5");
     }
 
     @Test
