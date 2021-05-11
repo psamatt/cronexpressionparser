@@ -1,4 +1,4 @@
-package com.psamatt.cronexpressionparser.parser.supporting;
+package com.psamatt.cronexpressionparser.parser.notation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,14 +17,14 @@ class IntRangeParserTest {
 
     @Test
     void shouldReturnIntRange() {
-        Collection<String> actual = parser.parse("1-3");
+        Collection<Integer> actual = parser.parse("1-3");
 
-        assertThat(actual).containsExactly("1", "2", "3");
+        assertThat(actual).containsExactly(1, 2, 3);
     }
 
     @Test
     void shouldReturnEmptyOnNoRange() {
-        Collection<String> actual = parser.parse("1");
+        Collection<Integer> actual = parser.parse("1");
 
         assertThat(actual).isEmpty();
     }

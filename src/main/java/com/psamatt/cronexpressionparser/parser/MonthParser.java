@@ -1,26 +1,34 @@
 package com.psamatt.cronexpressionparser.parser;
 
-import com.psamatt.cronexpressionparser.parser.supporting.CompositeParser;
-import com.psamatt.cronexpressionparser.parser.supporting.StringRangeParser;
+import com.psamatt.cronexpressionparser.TimeUnit;
 import java.util.Collection;
-import java.util.List;
 
 public class MonthParser implements Parser {
 
-    private final List<Parser> parsers;
+    private final Parser parser;
 
-    public MonthParser() {
-        parsers =
-                List.of(
-                        new StringRangeParser(
-                                List.of(
-                                        "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG",
-                                        "SEP", "OCT", "NOV", "DEC")),
-                        new CompositeParser(1, 12));
+    public MonthParser(TimeUnit timeUnit) {
+        parser = new CompositeParser(timeUnit);
     }
 
-    @Override
-    public Collection<String> parse(String segment) {
-        return parse(parsers, segment);
+    public Collection<Integer> parse(String segment) {
+        String replacedSegment = replaceNamedDays(segment);
+
+        return parser.parse(replacedSegment);
+    }
+
+    private String replaceNamedDays(String segment) {
+        return segment.replace("JAN", "1")
+                .replace("FEB", "2")
+                .replace("MAR", "3")
+                .replace("APR", "4")
+                .replace("MAY", "5")
+                .replace("JUN", "6")
+                .replace("JUL", "7")
+                .replace("AUG", "8")
+                .replace("SEP", "9")
+                .replace("OCT", "10")
+                .replace("NOV", "11")
+                .replace("DEC", "12");
     }
 }

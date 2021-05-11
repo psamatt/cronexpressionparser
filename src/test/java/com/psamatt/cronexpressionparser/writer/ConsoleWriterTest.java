@@ -10,11 +10,11 @@ import org.junit.jupiter.api.Test;
 
 class ConsoleWriterTest {
 
-    private static final List<String> PARSED_MINUTES = List.of("15");
-    private static final List<String> PARSED_HOURS = List.of("0");
-    private static final List<String> PARSED_DAY_OF_MONTHS = List.of("1", "15");
-    private static final List<String> PARSED_MONTHS = List.of("1", "2", "3", "4");
-    private static final List<String> PARSED_DAY_OF_WEEKS = List.of("1", "2", "3", "4", "5");
+    private static final List<Integer> PARSED_MINUTES = List.of(15);
+    private static final List<Integer> PARSED_HOURS = List.of(0);
+    private static final List<Integer> PARSED_DAY_OF_MONTHS = List.of(1, 15);
+    private static final List<Integer> PARSED_MONTHS = List.of(1, 2, 3, 4);
+    private static final List<Integer> PARSED_DAY_OF_WEEKS = List.of(1, 2, 3, 4, 5);
     private static final String COMMAND = "/usr/bin/find";
 
     private ConsoleWriter writer;

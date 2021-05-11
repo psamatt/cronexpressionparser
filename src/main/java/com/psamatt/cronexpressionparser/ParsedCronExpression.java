@@ -6,19 +6,19 @@ import lombok.Value;
 @Value
 public class ParsedCronExpression {
 
-    Collection<String> minuteOptions;
-    Collection<String> hourOptions;
-    Collection<String> dayOfMonthOptions;
-    Collection<String> monthOptions;
-    Collection<String> dayOfWeekOptions;
+    Collection<Integer> minuteOptions;
+    Collection<Integer> hourOptions;
+    Collection<Integer> dayOfMonthOptions;
+    Collection<Integer> monthOptions;
+    Collection<Integer> dayOfWeekOptions;
     String command;
 
     public ParsedCronExpression(
-            Collection<String> minuteOptions,
-            Collection<String> hourOptions,
-            Collection<String> dayOfMonthOptions,
-            Collection<String> monthOptions,
-            Collection<String> dayOfWeekOptions,
+            Collection<Integer> minuteOptions,
+            Collection<Integer> hourOptions,
+            Collection<Integer> dayOfMonthOptions,
+            Collection<Integer> monthOptions,
+            Collection<Integer> dayOfWeekOptions,
             String command) {
         this.minuteOptions = minuteOptions;
         this.hourOptions = hourOptions;

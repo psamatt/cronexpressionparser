@@ -1,4 +1,4 @@
-package com.psamatt.cronexpressionparser.parser.supporting;
+package com.psamatt.cronexpressionparser.parser.notation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,8 +10,8 @@ class SimpleParserTest {
     @Test
     void shouldReturnSimpleValue() {
         SimpleParser parser = new SimpleParser();
-        Collection<String> actual = parser.parse("3");
+        Collection<Integer> actual = parser.parse("3");
 
-        assertThat(actual).containsExactly("3");
+        assertThat(actual).containsExactly(3);
     }
 }

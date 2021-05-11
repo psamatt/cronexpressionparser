@@ -1,4 +1,4 @@
-package com.psamatt.cronexpressionparser.parser.supporting;
+package com.psamatt.cronexpressionparser.parser.notation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,15 +17,15 @@ class IncrementalParserTest {
 
     @Test
     void shouldReturnRangeOnIncrementalWithStarMin() {
-        Collection<String> actual = parser.parse("*/15");
+        Collection<Integer> actual = parser.parse("*/15");
 
-        assertThat(actual).containsExactly("0", "15");
+        assertThat(actual).containsExactly(0, 15);
     }
 
     @Test
     void shouldReturnRangeOnIncrementalWithSpecificMin() {
-        Collection<String> actual = parser.parse("5/15");
+        Collection<Integer> actual = parser.parse("5/15");
 
-        assertThat(actual).containsExactly("5", "20");
+        assertThat(actual).containsExactly(5, 20);
     }
 }

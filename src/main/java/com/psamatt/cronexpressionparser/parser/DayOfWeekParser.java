@@ -1,24 +1,30 @@
 package com.psamatt.cronexpressionparser.parser;
 
-import com.psamatt.cronexpressionparser.parser.supporting.CompositeParser;
-import com.psamatt.cronexpressionparser.parser.supporting.StringRangeParser;
+import com.psamatt.cronexpressionparser.TimeUnit;
 import java.util.Collection;
-import java.util.List;
 
 public class DayOfWeekParser implements Parser {
 
-    private final List<Parser> parsers;
+    private final Parser parser;
 
-    public DayOfWeekParser() {
-        parsers =
-                List.of(
-                        new StringRangeParser(
-                                List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN")),
-                        new CompositeParser(1, 7));
+    public DayOfWeekParser(TimeUnit timeUnit) {
+        parser = new CompositeParser(timeUnit);
     }
 
     @Override
-    public Collection<String> parse(String segment) {
-        return parse(parsers, segment);
+    public Collection<Integer> parse(String segment) {
+        String replacedSegment = replaceNamedDays(segment);
+
+        return parser.parse(replacedSegment);
+    }
+
+    private String replaceNamedDays(String segment) {
+        return segment.replace("MON", "1")
+                .replace("TUE", "2")
+                .replace("WED", "3")
+                .replace("THU", "4")
+                .replace("FRI", "5")
+                .replace("SAT", "6")
+                .replace("SUN", "7");
     }
 }

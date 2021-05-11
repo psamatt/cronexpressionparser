@@ -1,10 +1,9 @@
-package com.psamatt.cronexpressionparser.parser.supporting;
+package com.psamatt.cronexpressionparser.parser.notation;
 
 import com.psamatt.cronexpressionparser.parser.Parser;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 public class IncrementalParser implements Parser {
 
@@ -17,12 +16,11 @@ public class IncrementalParser implements Parser {
     }
 
     @Override
-    public Collection<String> parse(String segment) {
+    public Collection<Integer> parse(String segment) {
         if (segment.contains("/")) {
             String[] segments = segment.split("/");
             int minValue = getMinValue(segments[0]);
-            Collection<Integer> numbers = iterateToMax(minValue, Integer.parseInt(segments[1]));
-            return numbers.stream().map(String::valueOf).collect(Collectors.toList());
+            return iterateToMax(minValue, Integer.parseInt(segments[1]));
         }
         return Collections.emptyList();
     }

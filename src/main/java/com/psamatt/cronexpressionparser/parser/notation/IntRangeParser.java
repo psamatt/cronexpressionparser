@@ -1,4 +1,4 @@
-package com.psamatt.cronexpressionparser.parser.supporting;
+package com.psamatt.cronexpressionparser.parser.notation;
 
 import com.psamatt.cronexpressionparser.parser.Parser;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 public class IntRangeParser implements Parser {
 
     @Override
-    public Collection<String> parse(String segment) {
+    public Collection<Integer> parse(String segment) {
         if (segment.contains("-")) {
             String[] segments = segment.split("-");
             int lower = Integer.parseInt(segments[0]);
@@ -20,10 +20,10 @@ public class IntRangeParser implements Parser {
         return Collections.emptyList();
     }
 
-    private List<String> toRange(int lower, int upper) {
-        List<String> items = new ArrayList<>();
+    private List<Integer> toRange(int lower, int upper) {
+        List<Integer> items = new ArrayList<>();
         while (lower <= upper) {
-            items.add(String.valueOf(lower));
+            items.add(lower);
             lower++;
         }
         return items;

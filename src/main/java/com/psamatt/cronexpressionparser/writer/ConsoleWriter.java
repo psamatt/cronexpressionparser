@@ -2,6 +2,7 @@ package com.psamatt.cronexpressionparser.writer;
 
 import com.psamatt.cronexpressionparser.ParsedCronExpression;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class ConsoleWriter implements Writer {
 
@@ -17,8 +18,8 @@ public class ConsoleWriter implements Writer {
         output("command", expression.getCommand());
     }
 
-    private void output(String title, Collection<String> options) {
-        output(title, String.join(" ", options));
+    private void output(String title, Collection<Integer> options) {
+        output(title, options.stream().map(String::valueOf).collect(Collectors.joining(" ")));
     }
 
     private void output(String title, String command) {

@@ -2,6 +2,7 @@ package com.psamatt.cronexpressionparser.parser;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.psamatt.cronexpressionparser.TimeUnit;
 import java.util.Collection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,54 +13,54 @@ class MonthParserTest {
 
     @BeforeEach
     void setUp() {
-        parser = new MonthParser();
+        parser = new MonthParser(TimeUnit.MONTH);
     }
 
     @Test
     void shouldReturnOneValueOnSingle() {
-        Collection<String> values = parser.parse("3");
+        Collection<Integer> values = parser.parse("3");
 
-        assertThat(values).containsExactly("3");
+        assertThat(values).containsExactly(3);
     }
 
     @Test
     void shouldReturnRangeOnUsageOfHyphen() {
-        Collection<String> values = parser.parse("0-6");
+        Collection<Integer> values = parser.parse("0-6");
 
-        assertThat(values).containsExactly("0", "1", "2", "3", "4", "5", "6");
+        assertThat(values).containsExactly(0, 1, 2, 3, 4, 5, 6);
     }
 
     @Test
     void shouldReturnExactValuesOnUsageOfComma() {
-        Collection<String> values = parser.parse("1,2");
+        Collection<Integer> values = parser.parse("1,2");
 
-        assertThat(values).containsExactly("1", "2");
+        assertThat(values).containsExactly(1, 2);
     }
 
     @Test
     void shouldReturnIncrementalOf15StartingAtZero() {
-        Collection<String> values = parser.parse("*/4");
+        Collection<Integer> values = parser.parse("*/4");
 
-        assertThat(values).containsExactly("0", "4", "8");
+        assertThat(values).containsExactly(0, 4, 8);
     }
 
     @Test
     void shouldReturnIncrementalOf15StartingAtFive() {
-        Collection<String> values = parser.parse("1/4");
+        Collection<Integer> values = parser.parse("1/4");
 
-        assertThat(values).containsExactly("1", "5", "9");
+        assertThat(values).containsExactly(1, 5, 9);
     }
 
     @Test
     void shouldParseListOfDays() {
-        Collection<String> values = parser.parse("JAN-MAY");
+        Collection<Integer> values = parser.parse("JAN-MAY");
 
-        assertThat(values).containsExactly("1", "2", "3", "4", "5");
+        assertThat(values).containsExactly(1, 2, 3, 4, 5);
     }
 
     @Test
     void shouldReturnAll() {
-        Collection<String> values = parser.parse("*");
+        Collection<Integer> values = parser.parse("*");
 
         assertThat(values).hasSize(12);
     }

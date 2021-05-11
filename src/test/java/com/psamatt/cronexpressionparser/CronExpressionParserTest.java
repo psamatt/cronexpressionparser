@@ -14,11 +14,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class CronExpressionParserTest {
 
-    private static final List<String> PARSED_MINUTES = List.of("15");
-    private static final List<String> PARSED_HOURS = List.of("0");
-    private static final List<String> PARSED_DAY_OF_MONTHS = List.of("1", "15");
-    private static final List<String> PARSED_MONTHS = List.of("1");
-    private static final List<String> PARSED_DAY_OF_WEEKS = List.of("1", "2");
+    private static final List<Integer> PARSED_MINUTES = List.of(15);
+    private static final List<Integer> PARSED_HOURS = List.of(0);
+    private static final List<Integer> PARSED_DAY_OF_MONTHS = List.of(1, 15);
+    private static final List<Integer> PARSED_MONTHS = List.of(1);
+    private static final List<Integer> PARSED_DAY_OF_WEEKS = List.of(1, 2);
     private static final String COMMAND = "/usr/bin/find";
 
     @Mock private Parser minuteParser;
