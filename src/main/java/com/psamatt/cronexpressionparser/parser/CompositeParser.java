@@ -31,9 +31,7 @@ public class CompositeParser implements Parser {
 
     @Override
     public Collection<Integer> parse(String segment) {
-        String[] segments = segment.split(",");
-        List<String> items = Arrays.asList(segments);
-        return items.stream()
+        return Arrays.stream(segment.split(","))
                 .map(item -> parse(parsers, item))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());

@@ -14,7 +14,6 @@ public class DayOfWeekParser implements Parser {
     @Override
     public Collection<Integer> parse(String segment) {
         String replacedSegment = replaceNamedDays(segment);
-
         return parser.parse(replacedSegment);
     }
 

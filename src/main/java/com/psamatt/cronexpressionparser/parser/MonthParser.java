@@ -13,7 +13,6 @@ public class MonthParser implements Parser {
 
     public Collection<Integer> parse(String segment) {
         String replacedSegment = replaceNamedDays(segment);
-
         return parser.parse(replacedSegment);
     }
 

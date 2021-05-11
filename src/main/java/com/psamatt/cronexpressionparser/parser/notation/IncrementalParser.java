@@ -1,9 +1,10 @@
 package com.psamatt.cronexpressionparser.parser.notation;
 
 import com.psamatt.cronexpressionparser.parser.Parser;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class IncrementalParser implements Parser {
 
@@ -26,13 +27,9 @@ public class IncrementalParser implements Parser {
     }
 
     private Collection<Integer> iterateToMax(int minValue, int iterator) {
-        int counter = minValue;
-        Collection<Integer> numbers = new ArrayList<>();
-        while (counter < max) {
-            numbers.add(counter);
-            counter = counter + iterator;
-        }
-        return numbers;
+        return IntStream.iterate(minValue, i -> i < max, i -> i + iterator)
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     private int getMinValue(String segment) {
